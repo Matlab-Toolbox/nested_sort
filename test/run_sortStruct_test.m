@@ -28,3 +28,20 @@
   else
     pass_count  = pass_count  + 1;
   end
+
+  
+    A = struct('name', {1,2,3,4}, 'value', {9,8,6,5});
+  B = sortStruct(A, 'value');
+  expect = struct('name', {4,3,2,1}, 'value', {5,6,8,9});
+  if (  ~isequal(B, expect)  )
+    disp('sortStruct() Failed ')
+    error_count = error_count + 1;
+  else
+    pass_count  = pass_count  + 1;
+  end
+
+  if error_count > 0
+    disp(['Test FAILED : ', num2str(pass_count), ' passes and ',num2str(error_count),' fails'])
+  else
+    disp(['Test Passed : ', num2str(pass_count), ' checks ran '])
+  end
