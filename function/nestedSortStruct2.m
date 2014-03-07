@@ -39,7 +39,7 @@ function [sortedStruct index] = nestedSortStruct2(aStruct, fieldNamesCell, direc
 %% check inputs, construct classFields
 if nargin < 4 % if classFields does not exist, check inputs
     if ~isstruct(aStruct)
-        error('first input supplied is not a struct.')
+        error('First input supplied is not a struct.')
     end % if
     
     if sum(size(aStruct)>1)>1 % if more than one non-singleton dimension
@@ -51,7 +51,7 @@ if nargin < 4 % if classFields does not exist, check inputs
             [sortedStruct index] = sortStruct(aStruct, fieldNamesCell);
             return
         else
-            error('second input supplied is not a cell array or simple string of a fieldname.')
+            error('The second input (%s) is not a cell array or simple string of a fieldname.', fieldName)
         end % if isfield
     end % if ~iscell
     
@@ -59,7 +59,7 @@ if nargin < 4 % if classFields does not exist, check inputs
         for ii=find(~isfield(aStruct, fieldNamesCell))
             fprintf('%s is not a fieldname in the struct.\n', fieldNamesCell{ii})
         end % for
-        error('at least one entry in fieldNamesCell is not actually a fieldname in the struct.')
+        error('At least one entry in fieldNamesCell is not actually a fieldname in the struct.')
     end % if
     
     % check classes of fieldnames, construct classFields (0 for numeric, 1 for char)
@@ -72,7 +72,7 @@ if nargin < 4 % if classFields does not exist, check inputs
         for ii=find(classFields==-1)
             fprintf('%s is not a valid fieldname by which to sort.\n', fieldNamesCell{ii})
         end % for ii
-        error('at least one fieldname is not a valid one by which to sort.')
+        error('At least one fieldname is not a valid one by which to sort.')
     end % if any...
     
     % check directions, create directNew

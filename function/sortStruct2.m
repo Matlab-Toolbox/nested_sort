@@ -25,13 +25,13 @@ if nargin < 4 || check
     end % if
     
     if ~ischar(fieldName) || ~isfield(aStruct, fieldName)
-        error('second input is not a valid fieldname.')
+        error('The second input (%s) is not a valid fieldname.', fieldName)
     end % if
     
     if nargin < 3
         direction = 1;
     elseif ~isnumeric(direction) || numel(direction)>1 || ~ismember(direction, [-1 1])
-        error('direction must equal 1 for ascending order or -1 for descending order.')
+        error('Direction must equal 1 for ascending order or -1 for descending order.')
     end % if
 end % if check
 
@@ -39,9 +39,9 @@ end % if check
 fieldEntry = aStruct(1).(fieldName);
 
 if (isnumeric(fieldEntry) || islogical(fieldEntry)) && numel(fieldEntry) == 1 % if the field is a single number
-    [dummy index] = sort([aStruct.(fieldName)]);
+    [~ index] = sort([aStruct.(fieldName)]);
 elseif ischar(fieldEntry) % if the field is char
-    [dummy index] = sort({aStruct.(fieldName)});
+    [~ index] = sort({aStruct.(fieldName)});
 else
     error('%s is not an appropriate field by which to sort.', fieldName)
 end % if ~isempty

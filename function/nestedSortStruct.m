@@ -87,7 +87,7 @@ else % check directions if it does exist
 end % if exist...
 
 %% fieldNamesIdx is a vector of the indices of the fields by which to sort
-[dummy fieldNamesIdx] = ismember(fieldNamesCell, fieldnames(aStruct));
+[~ fieldNamesIdx]  = ismember(fieldNamesCell, fieldnames(aStruct));
 
 %% convert the struct to a cell, squeeze makes sure both row and column arrays are sorted properly, transpose for sortrows
 aCell = squeeze(struct2cell(aStruct))';
