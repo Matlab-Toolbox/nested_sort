@@ -19,7 +19,7 @@
   error_count = 0;
   pass_count  = 0;
 
-  A = struct('name', {1,2,3,4}, 'value', {5,2,3,1});
+  A = struct('name', num2cell(1:4),  'value', {5,2,3,1});
   B = sortStruct(A, 'value');
   expect = struct('name', {4,2,3,1}, 'value', {1,2,3,5});
   if (  ~isequal(B, expect)  )
@@ -30,7 +30,7 @@
   end
 
   
-    A = struct('name', {1,2,3,4}, 'value', {9,8,6,5});
+  A = struct('name', num2cell(1:4),  'value', {9,8,6,5});
   B = sortStruct(A, 'value');
   expect = struct('name', {4,3,2,1}, 'value', {5,6,8,9});
   if (  ~isequal(B, expect)  )
